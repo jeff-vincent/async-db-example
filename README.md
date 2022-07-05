@@ -5,7 +5,7 @@ flask; redis; redis queue; mongo
 ```
 sudo docker-compose -f docker-compose.yml up
 ```
-## Run in Velocity
+## Run in [Velocity](https://docs.velocity.tech/intro-and-overview/readme)
 ```
 veloctl env up -f docker-compose.yml --offload mongo, redis
 ```

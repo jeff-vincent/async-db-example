@@ -1,4 +1,4 @@
-# async-db-example
+# redis-queue-mongo-example-python
 flask; redis; redis queue; mongo
 
 ## Docker-Compose

@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    velocity.tech.v1/id: jeffs-worker
+    velocity.tech.v1/dependsOn: redis, mongo-db
+  name: worker
+  labels:
+    app: worker
+spec:
+  selector:
+    matchLabels:
+      api: worker
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        api: worker
+    spec:
+      containers:
+        - name: worker
+          image: jdvincent/worker:latest
+          env:
+            - name: MONGO_HOST
+              value: mongo
+              # value: "{velocity.v1:mongo-db.exposures(port=mongo).host}"
+            - name: MONGO_PORT
+              value: "27017"
+              # value: "{velocity.v1:mongo-db.exposures(port=mongo).port}"
+            - name: REDIS_HOST
+              value: redis
+              # value: "{velocity.v1:redis.exposures(port=redis).host}"
+            - name: REDIS_PORT
+              value: "6379"
+              # value: "{velocity.v1:redis.exposures(port=redis).port}"

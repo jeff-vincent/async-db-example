@@ -1,0 +1,1 @@
+rqworker --url redis://$REDIS_HOST:$REDIS_PORT/0

@@ -1,11 +1,15 @@
+import os
 import redis
 from flask import Flask
 from flask import request
 from rq import Queue
 from base_api import insert_into_mongo
 
+REDIS_HOST = os.environ.get("REDIS_HOST")
+REDIS_PORT = os.environ.get("REDIS_PORT")
+
 app = Flask(__name__)
-q = Queue(connection=redis.Redis(host='redis', port=6379, db=0))
+q = Queue(connection=redis.Redis(host=REDIS_HOST, port=REDIS_PORT, db=0))
 
 @app.route('/')
 def event():

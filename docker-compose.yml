@@ -8,10 +8,10 @@ services:
       - 27017:27017
   app:
     restart: always
-    build: ./app/
+    build: ./api/
     ports:
       - 8888:8888
-    command: python app.py
+    command: python main.py
   redis:
     image: redis:latest
     ports:

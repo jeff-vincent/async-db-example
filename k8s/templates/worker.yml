@@ -23,14 +23,18 @@ spec:
           image: jdvincent/worker:latest
           env:
             - name: MONGO_HOST
-              value: mongo
+              # value: mongo
               # value: "{velocity.v1:mongo-db.exposures(port=mongo).host}"
+              value: {{ .Values.mongo_host | toJson  }}
             - name: MONGO_PORT
-              value: "27017"
+              # value: "27017"
               # value: "{velocity.v1:mongo-db.exposures(port=mongo).port}"
+              value: {{ .Values.mongo_port | toJson  }}
             - name: REDIS_HOST
-              value: redis
+              # value: redis
               # value: "{velocity.v1:redis.exposures(port=redis).host}"
+              value: {{ .Values.redis_host | toJson  }}
             - name: REDIS_PORT
-              value: "6379"
+              # value: "6379"
               # value: "{velocity.v1:redis.exposures(port=redis).port}"
+              value: {{ .Values.redis_port | toJson  }}

@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   annotations:
     velocity.tech.v1/id: mongo-db
-    # velocity.tech.v1/exposures-mongo-scheme: const="mongo"
+    # velocity.tech.v1/exposures-mongo-scheme: const="mongodb"
   name: mongo
   labels:
     app: mongo
@@ -21,9 +21,9 @@ spec:
     spec:
       containers:
         - name: mongo
-          image: mongo:latest
+          image: mongo:5.0
           ports:
-            - name: mongo-port
+            - name: mongo
               containerPort: 27017
               protocol: TCP
 ---

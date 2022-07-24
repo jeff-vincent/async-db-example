@@ -7,5 +7,5 @@ docker-compose -f docker-compose.yml up
 ```
 ## Run in [Velocity](https://docs.velocity.tech/intro-and-overview/readme)
 ```
-veloctl env up -f docker-compose.yml --offload mongo
+helm template /k8s --values /k8s/velocity-values.yml | veloctl env create -f -
 ```

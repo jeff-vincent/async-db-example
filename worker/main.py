@@ -1,1 +1,1 @@
-from base_api import insert_into_mongo
+from async_tasks import insert_into_mongo

@@ -8,9 +8,16 @@ services:
       - 27017:27017
   app:
     restart: always
-    build: ./api/
+    build: 
+      context: ./
+      dockerfile: ./api/Dockerfile
     ports:
       - 8888:8888
+    environment:
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     command: python main.py
   redis:
     image: redis:latest
@@ -18,5 +25,12 @@ services:
       - 6379:6379
   worker:
     restart: always
-    build: ./worker/
+    build: 
+      context: ./
+      dockerfile: ./worker/Dockerfile
     command: rqworker --url redis://redis:6379/0
+    environment:
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379

@@ -3,7 +3,7 @@ import redis
 from flask import Flask
 from flask import request
 from rq import Queue
-from base_api import insert_into_mongo
+from async_tasks import insert_into_mongo
 
 REDIS_HOST = os.environ.get("REDIS_HOST")
 REDIS_PORT = os.environ.get("REDIS_PORT")

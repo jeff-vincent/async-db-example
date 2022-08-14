@@ -11,4 +11,3 @@ events = db.events
 
 def insert_into_mongo(data):
     events.insert_one(data)
-    

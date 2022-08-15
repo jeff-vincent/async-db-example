@@ -24,20 +24,12 @@ spec:
           image: jdvincent/api:latest
           env:
             - name: REDIS_HOST
-              # value: redis
-              # value: "{velocity.v1:redis.exposures(port=redis).host}"
               value: {{ .Values.redis_host | toJson  }}
             - name: REDIS_PORT
-              # value: "6379"
-              # value: "{velocity.v1:redis.exposures(port=redis).port}"
               value: {{ .Values.redis_port | toJson  }}
             - name: MONGO_HOST
-              # value: mongo
-              # value: "{velocity.v1:mongo-db.exposures(port=mongo).host}"
               value: {{ .Values.mongo_host | toJson  }}
             - name: MONGO_PORT
-              # value: "27017"
-              # value: "{velocity.v1:mongo-db.exposures(port=mongo).port}"
               value: {{ .Values.mongo_port | toJson  }}
           ports:
             - name: api-port
@@ -62,8 +54,9 @@ kind: Ingress
 metadata:
   name: api
 spec:
+  ingressClassName: {{ .Values.ingress_class_name | toJson }}
   rules:
-    - host: api-{velocity.v1.domainSuffix}
+    - host: {{ .Values.ingress_host | toJson }}
       http:
         paths:
           - path: /
